@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, include, url
+import swap
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	url(r'^', 'swap.views.index'),
     # Examples:
     # url(r'^$', 'sectionswap.views.home', name='home'),
     # url(r'^sectionswap/', include('sectionswap.foo.urls')),
