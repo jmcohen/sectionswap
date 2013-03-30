@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+<!DOCTYPE>
+<html>
 	<head>
 		<title>Section Swap</title>
 		<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
 		<script src="static/underscore.js"></script>	
 		<style type="text/css">
-			body {font-family: Helvetica;}
+			body {font-family: Helvetica; background-color: #0065B2;}
+			#container {width: 650px; border-radius: 20px; height: auto; -webkit-box-shadow: 0 0 10px rgb(0,255,255); background: -webkit-linear-gradient(#FEFEFE, #DCDCDC); margin-left: auto; margin-right: auto; margin-top: 50px; border: black 0px solid;}
+			#logo {margin-left: 125px; margin-right: 125px; margin-top: 15px; width: 400px;}
+			#options-div {width: 600px; margin-left: auto; margin-right: auto; clear: left;}
+			#submit-div{width: 100px; margin-left: auto; margin-right: auto; padding-bottom: 20px; padding-top: 20px; clear: left;}
 		</style>
 	</head>
-	<body style="background-color: #0065B2;">
-		<div style="width: 650px; border-radius: 20px; height: auto; -webkit-box-shadow: 0 0 10px rgb(0,255,255); background: -webkit-linear-gradient(#FEFEFE, #DCDCDC); margin-left: auto; margin-right: auto; margin-top: 50px; border: black 0px solid;">
-			<img style="margin-left: 125px; margin-right: 125px; margin-top: 15px; width: 400px;" src="static/logo.png"/>
+	<body>
+		<div id="container">
+			<img id="logo" src="static/logo.png"/>
 			<div style="width: 100px; margin-left: auto; margin-right: auto;">
 				<select style="width: 100%;" id="section-select">
 				</select>
 			</div>
-			<div id="middle" style="width: 600px; margin-left: auto; margin-right: auto; clear: left;">
+			<div id="options-div">
 				<div id="have-div" style="float: left; margin-right: 10px;">
 					<h5 id="have-label" class="hide">I have...</h5>
 					<div id="have-options">
@@ -27,7 +32,7 @@
 					</div>
 				</div>
 			</div>
-			<div style="width: 100px; margin-left: auto; margin-right: auto; padding-bottom: 20px; padding-top: 20px; clear: left;">
+			<div id="submit-div">
 				<button id="submit" class="btn btn-primary btn-success hide">Submit</button>
 			</div>
 		</div>

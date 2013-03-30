@@ -1,4 +1,4 @@
-from sectionswap.models import SwapRequest
+from swap.models import SwapRequest
 from django.core.mail import send_mail
 
 # Don't let a user submit identical have/want request
@@ -13,6 +13,8 @@ def process(input_req):
         for req in cycle:
             email(req, netids)
             req.delete()
+        return netids
+    return None
 
 
 def email(req, netids):

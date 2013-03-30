@@ -70,8 +70,8 @@ class User(models.Model):
 
 class SwapRequest(models.Model):
     user = models.ForeignKey(User)
-    have = models.ForeignKey(Section, related_name='had_by')
-    want = models.ForeignKey(Section, related_name='wanted_by')
+    have = models.ForeignKey(Section, related_name='had_by_set')
+    want = models.ForeignKey(Section, related_name='wanted_by_set')
     date = models.DateTimeField(auto_now=True)
 
     def __gt__(self, other):
@@ -97,14 +97,13 @@ class SwapRequest(models.Model):
 
     def __hash__(self):
         result = 17
-        result = 31 * result + hash(user.netid)
+        result = 31 * result + hash(self.user.netid)
         result = 31 * result + hash(self.have.name)
         result = 31 * result + hash(self.want.name)
         return result
 
     def __unicode__(self):
-        return unicode(self.user) \
-               + (' (%s)' % self.date.strftime('%m/%d/%y %H:%M:%S'))
+        return unicode(self.user) + " ( " + str(self.have) + " -> " + str(self.want) + " ) " 
     
     def find_cycle(self, visited_list=None, visited_set=None):
         if visited_list == None:

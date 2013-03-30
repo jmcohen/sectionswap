@@ -6,17 +6,25 @@ from django.core.mail import send_mail
 # import casclient
 import traceback
 import json
+from process import process
 
 def index(request):
 	return render_to_response("index.html")
 
 def swapRequest(request):
-	user = request.GET['user']
-	have = request.GET['have']
-	want = request.GET['want']
-	courseNumber = request.get['course']
-	course = Course.objects.get(number=courseNumber)
-	return HttpResponse(want)
+	netid = request.GET['user']
+	haveSectionNumber = request.GET['have']
+	wantSectionNumbers = request.GET['want'].split(',')
+	
+	user, userCreated = User.objects.get_or_create(netid=netid)
+	user.save()
+	haveSection = Section.objects.get(number=haveSectionNumber)	
+	for wantSectionNumber in wantSectionNumbers:
+		wantSection = Section.objects.get(number=wantSectionNumber)
+		swap, swapCreated = SwapRequest.objects.get_or_create(user=user, have=haveSection, want=wantSection)
+		swap.save()
+		process(swap)
+	return HttpResponse("All good!")
 
 def testEmail(request):
 	send_mail('test subject', 'test body', 'princetonsectionswap@gmail.com', ['ljmayer@princeton.edu'], fail_silently=False)
@@ -24,7 +32,7 @@ def testEmail(request):
 
 def courses(request):
 # 	courseDicts = []
-# 	for course in Course.objects.all():
+# 	for course in Course.objects.all().order_by('code'):
 # 		sectionDicts = []
 # 		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="C")).order_by('name')
 # 		
