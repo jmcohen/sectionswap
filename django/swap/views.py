@@ -6,6 +6,9 @@ import traceback
 def index(request):
 	return render_to_response("index.html")
 
+def swapRequest(request):
+	return HttpResponse("It works!!!")
+
 # def index(request):
 # 	C = casclient.CASClient()
 # 	try:
