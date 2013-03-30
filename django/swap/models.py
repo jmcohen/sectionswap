@@ -111,15 +111,12 @@ class SwapRequest(models.Model):
             visited_list = []
         if visited_set == None:
             visited_set = set()
-        
-        if len(visited_list) > 0 and self == visited_list[0]:
-            return visited_list
-
+    
         visited_list.append(self)
         visited_set.add(self)
 
         for req in self.want.sorted_had_by_set():
-            if req not in visited_set:
-                temp = req.find_cycle(visited_list[:], set(visited_set))
-                if temp != None:
-                    return visited_list
+            if req == visited_list[0]:
+                return visited_list
+	    if req not in visited_set:
+                return req.find_cycle(visited_list[:], set(visited_set))
