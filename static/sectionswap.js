@@ -1,18 +1,27 @@
 var setSectionOptions = function(sections){
+	$("#submit").show();
+	$("#have-label").show();
 	$("#have-options").empty();
 	_.each(sections, function(section){
 		$("#have-options").append('<label class="radio"><input name="have" class="have-option" value="' + section.number + '" type="radio">' + section.name + '</label>');
 	});
+	$("#want-label").show();
 	$("#want-options").empty();
 	_.each(sections, function(section){
 		$("#want-options").append('<label class="checkbox"><input name="want" class="want-option" value="' + section.number + '" type="checkbox">' + section.name + '</label>');
 	});
+	
+	$("body").attr("background", "-webkit-linear-gradient(#FFFFFF, #EEEEEE)");
+	var width = $("#want-options").width();
+	$("#middle").width(20 + width * 2);
+	console.log(20 + width * 2);
 }
 
 $(document).ready(function(){
 	$.getJSON("courses", function(courses){
 		_.each(courses, function(course){
-			$("#section-select").append('<option value="' + course['number'] + '">' + course['code'] + '</option>');
+			var el = $('<option value="' + course['number'] + '"></option>').text(course['code']);
+			$("#section-select").append(el);
 		});
 		
 	$("#section-select").change(function(){
@@ -27,7 +36,8 @@ $(document).ready(function(){
 		var courseNumber = $("#section-select").val();	
 		var haveNumber = $(".have-option:checked").val();
 		var wantNumber = _.map($(".want-option:checked"), function(w){return $(w).val()});
-		var url = "swaprequest?course=" + courseNumber + "&have=" + haveNumber + "&want=" + wantNumber;
+		var user = "jmcohen";
+		var url = "swaprequest?course=" + courseNumber + "&have=" + haveNumber + "&want=" + wantNumber + "&user=" + user;
 		window.location.href = url;
 	});
 });

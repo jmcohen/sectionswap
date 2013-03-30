@@ -4,38 +4,32 @@
 		<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
 		<script src="static/underscore.js"></script>	
+		<style type="text/css">
+			body {font-family: Helvetica;}
+		</style>
 	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<h1 style="text-align: center;">Section Swap</h1>
+	<body style="background-color: #0065B2;">
+		<div style="width: 650px; border-radius: 20px; height: auto; -webkit-box-shadow: 0 0 10px rgb(0,255,255); background: -webkit-linear-gradient(#FEFEFE, #DCDCDC); margin-left: auto; margin-right: auto; margin-top: 50px; border: black 0px solid;">
+			<img style="margin-left: 125px; margin-right: 125px; margin-top: 15px; width: 400px;" src="static/logo.png"/>
+			<div style="width: 100px; margin-left: auto; margin-right: auto;">
+				<select style="width: 100%;" id="section-select">
+				</select>
 			</div>
-			<div class="form">
-				<div class="row">
-					<div class="span2 offset5">
-						<select id="section-select" class="span2">
-						</select>
+			<div id="middle" style="width: 600px; margin-left: auto; margin-right: auto; clear: left;">
+				<div id="have-div" style="float: left; margin-right: 10px;">
+					<h5 id="have-label" class="hide">I have...</h5>
+					<div id="have-options">
 					</div>
 				</div>
-				<div class="row">
-					<div id="have-div" class="span3 offset3">
-						<h4>I have...</h4>
-						<div id="have-options">
-						</div>
-					</div>
-					<div id="want-div" class="span3">
-						<h4>I want...</h4>
-						<div id="want-options">
-						</div>
+				<div id="want-div" style="float: right; margin-left: 10px;">
+					<h5 id="want-label" class="hide">I want...</h5>
+					<div id="want-options">
 					</div>
 				</div>
-				<div class="row">
-					<div class="span2 offset5">
-						<button id="submit" class="btn btn-primary">Submit</button>
-					</div>
-				</div>
-				
-			</form>
+			</div>
+			<div style="width: 100px; margin-left: auto; margin-right: auto; padding-bottom: 20px; padding-top: 20px; clear: left;">
+				<button id="submit" class="btn btn-primary btn-success hide">Submit</button>
+			</div>
 		</div>
 		<script src="static/sectionswap.js"></script>	
 	</body>
