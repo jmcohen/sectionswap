@@ -53,17 +53,17 @@ class Entry(models.Model):
     totalEnroll = models.IntegerField(default=0)
     totalClosed = models.BooleanField(default=False)	
     
-    class User(models.Model):
-        netid = models.CharField(max_length=8)
-        pwd   = models.CharField(max_length=32)
-        # swaprequest_set (ForeignKey)
+class User(models.Model):
+    netid = models.CharField(max_length=8)
+    pwd   = models.CharField(max_length=32)
+    # swaprequest_set (ForeignKey)
     
     def __eq__(self, other):
         return self.netid == other.netid
-		
+    
     def __ne__(self, other):
         return not self.__eq__(other)
-
+    
     def __unicode__(self):
         return self.netid
 
