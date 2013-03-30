@@ -19,4 +19,4 @@ def email(req, netids):
     email_body = 'Users involved in swap:\n'
     for netid in netids:
         email_body += netid + '\n'
-    send_mail('Successful swap ' + req.want.user.netid, email_body, 'from email', [req.user.netid + '@princeton.edu'], fail_silently=False)
+    send_mail('Successful swap into' + unicode(req.want), email_body, 'from email', [req.user.netid + '@princeton.edu'], fail_silently=False)
