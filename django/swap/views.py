@@ -14,16 +14,19 @@ def swapRequest(request):
 	return HttpResponse(want)
 	
 def courses(request):
-	courses = []
+	courseDicts = []
 	for course in Course.objects.all():
-		sections = []
-		for section in Section.objects.filter(course=course).order_by('name'):
+		sectionDicts = []
+		sections = Section.objects.filter(course=course).order_by('name')
+		if len(sections) < 2:
+			continue
+		for section in sections:
 			name = section.name + " (" + section.days + " " + section.time + ")"
 			sectionDict = {'number' : section.number, 'name' : name}
-			sections.append(sectionDict)
-		courseDict = {'code' : course.code, 'number' : course.number, 'sections' : sections}
-		courses.append(courseDict)
-	coursesJson = json.dumps(courses)
+			sectionDicts.append(sectionDict)
+		courseDict = {'code' : course.code, 'number' : course.number, 'sections' : sectionDicts}
+		courseDicts.append(courseDict)
+	coursesJson = json.dumps(courseDicts)
 	return HttpResponse(coursesJson)
 
 # def index(request):
