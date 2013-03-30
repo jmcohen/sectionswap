@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from django.db.models import Q
 from swap.models import *
 # import casclient
 import traceback
@@ -17,9 +18,13 @@ def courses(request):
 	courseDicts = []
 	for course in Course.objects.all():
 		sectionDicts = []
-		sections = Section.objects.filter(course=course).order_by('name')
+		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="C")).order_by('name')
+		
 		if len(sections) < 2:
 			continue
+		if len(sections.filter(name__startswith='L')) < 2 and len(sections.filter(name__startswith='P')) < 2:
+			continue
+		
 		for section in sections:
 			name = section.name + " (" + section.days + " " + section.time + ")"
 			sectionDict = {'number' : section.number, 'name' : name}
