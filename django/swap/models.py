@@ -1,7 +1,7 @@
 from django.db import models
 
 class Course(models.Model):
-	code = models.CharField(max_length=10)
+	code = models.CharField(max_length=50)
 	name = models.CharField(max_length=128)
 	number = models.CharField(max_length=30, primary_key=True)
 	hits = models.IntegerField(default=0) # times requested; for diagnostics
@@ -21,9 +21,10 @@ class Course(models.Model):
 		return self.short_name() + ' | ' + self.name
         
 	def short_name(self):
-		return self.number
+		return self.code
 		
 class Section(models.Model):
+	number = models.CharField(max_length=30, primary_key=True)
 	course = models.ForeignKey(Course)
 	name   = models.CharField(max_length=4)
 	days   = models.CharField(max_length=15)
