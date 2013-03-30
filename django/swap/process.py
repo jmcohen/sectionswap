@@ -12,10 +12,14 @@ def process(input_req):
             netids.append(req.user.netid)
         for req in cycle:
             email(req, netids)
-            req.delete()
+            delete_all(req)
         return netids
     return None
 
+def delete_all(input_req):
+    for req in input_req.section.had_by_set.all():
+        if req.user == input_req.user:
+            req.delete()
 
 def email(req, netids):
     email_body = 'Users involved in swap:\n'
