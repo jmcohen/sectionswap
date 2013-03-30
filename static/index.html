@@ -24,10 +24,21 @@
 			padding-top: 20px;
 			clear: left;
 			}
+
+			#randbg {
+                        position: fixed;
+                        top: 0px;
+                        z-index: -1;
+                        display: none;
+                        }
+			
 		</style>
 	</head>
 	<body>
-		<div id="container" style="display: none;">
+	  <img id="randbg" src="" alt="" />
+	  
+	  
+	  <div id="container" style="display: none;">
 			<img id="logo" src="static/logo.png"/>
 			<div style="width: 150px; margin-left: auto; margin-right: auto;">
 				<select style="width: 100%;" id="section-select">

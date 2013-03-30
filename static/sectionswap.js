@@ -25,11 +25,12 @@ var setSectionOptions = function(sections){
 // 	$('#container').height(height).animate({height: autoHeight}, 300);
 }
 
-
-// Random background image
-var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'];
-$('body').css({'background-image': 'url(static/bg/' + images[Math.floor(Math.random() * images.length)] + ')'});
-
+// Random background image selection
+$('#randbg').randomImage();
+bg = $('#randbg')
+bg.load(function() {
+    bg.fadeIn(1000);
+});
 
 function get_user_query() {
     name = 'netid';
