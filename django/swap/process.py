@@ -7,13 +7,13 @@ def process(input_req):
     input_req.save()
     cycle = input_req.find_cycle()
     if cycle != None:
-        netids = []
+        req_strs = []
         for req in cycle:
-            netids.append(req.user.netid)
+            req_strs.append(unicode(req))
         for req in cycle:
-            email(req, netids)
+            email(req, req_strs)
             delete_all(req)
-        return netids
+        return req_strs
     return None
 
 def delete_all(input_req):
@@ -29,7 +29,7 @@ def email(req, netids):
     	<p>%s</p>
     	<p>Cheers!</p>
     	<p>The Section Swap Team</p>
-    	""" % (str(req.have.course), str(req.have.name), str(req.want.name), "</p><p>".join(netids))
+    	""" % (str(req.have.course), str(req.have.name), str(req.want.name), "</p><p>".join(req_strs))
 
     msg = EmailMessage('Successful swap into ' + str(req.want), email_body, 'Section Swap<princetonsectionswap@gmail.com>', [req.user.netid + '@princeton.edu'])
     msg.content_subtype = "html"

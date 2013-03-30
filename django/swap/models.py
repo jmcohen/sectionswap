@@ -103,7 +103,7 @@ class SwapRequest(models.Model):
         return result
 
     def __unicode__(self):
-        return unicode(self.user) + " ( " + str(self.have) + " -> " + str(self.want) + " ) " 
+        return unicode(self.user) + ": " + str(self.have) + " -> " + str(self.want) 
     
     def find_cycle(self, visited_list=None, visited_set=None):
         if visited_list == None:
@@ -117,7 +117,8 @@ class SwapRequest(models.Model):
         for req in self.want.sorted_had_by_set():
             if req == visited_list[0]:
                 return visited_list
-	    if req not in visited_set:
+	        if req not in visited_set:
                 temp = req.find_cycle(visited_list[:], set(visited_set))
-		if temp != None:
-                    return temp
+		    if temp != None:
+                return temp
+
