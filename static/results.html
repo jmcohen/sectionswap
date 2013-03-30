@@ -4,95 +4,22 @@
 		<title>Section Swap</title>
 		<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
-		<script src="static/underscore.js"></script>	
+		<script src="static/underscore.js"></script>
+  		<link href="static/style.css" rel="stylesheet"/>	
   		<link href="static/select2/select2.css" rel="stylesheet"/>
   		<script src="static/select2/select2.js"></script>
-    		<style type="text/css">
-
-			body {
-			font-family: Helvetica;
-			background-color: #424242;
-			background-position: center top;
-			background-repeat: no-repeat;
-			}
-			
-			#container {
-			width: 650px; 
-			border-radius: 20px;
-			height: auto; -webkit-box-shadow: 0 0 15px rgb(255,255,255);
-			background: -webkit-linear-gradient(#FEFEFE, #DCDCDC);
-			opacity: 0.9;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 50px;
-			border: black 0px solid;
-			}
-
-			#logo {
-			margin-left: 125px;
-			margin-right: 125px;
-			margin-top: 15px;
-			width: 400px;
-			}
-
-			#options-div {
-			width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-			clear: left;
-			}
-
-			#submit-div {
-			width: 100px;
-			margin-left: auto;
-			margin-right: auto;
-			padding-bottom: 20px;
-			padding-top: 20px;
-			clear: left;
-			}
-
-			@-webkit-keyframes rotate {
-			from {
-			webkit-transform: rotate(0deg);
-			}
-			to {
-			-webkit-transform: rotate(360deg);
-			}
-			}
-
-			#rotating {
-			-webkit-animation-name:             rotate; 
-			-webkit-animation-duration:         0.5s; 
-			-webkit-animation-iteration-count:  infinite;
-			-webkit-transition-timing-function: linear;
-    			}
-
-		</style>
 	</head>
 	<body>
 		<div id="container">
 			<img id="logo" src="static/logo.png"/>
-			<div style="width: 150px; margin-left: auto; margin-right: auto;">
-				<select style="width: 100%;" id="section-select">
-					<option>Choose a course:</option>
-				</select>
-			</div>
-			<div id="options-div">
-				<div id="have-div" style="float: left; margin-right: 10px;">
-					<h4 id="have-label" class="hide">I have...</h4>
-					<div id="have-options">
-					</div>
-				</div>
-				<div id="want-div" style="float: right; margin-left: 10px;">
-					<h4 id="want-label" class="hide">I want...</h4>
-					<div id="want-options">
-					</div>
-				</div>
-			</div>
-			<div id="submit-div">
-				<button id="submit" class="btn btn-primary btn-success hide">Submit</button>
+			<div style="padding: 10px;">
+				<h3>Thank you for posting on Section Swap!</h3>
+				<p>While we couldn't find any compatible swaps in our system at the moment, we'll let you know as soon as one arises.</p>
 			</div>
 		</div>
-		<script src="static/sectionswap.js"></script>	
 	</body>
+	<script type="text/javascript">
+		var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+		$('body').css({'background-image': 'url(static/bg_orange/' + images[Math.floor(Math.random() * images.length)] + ')'});
+	</script>
 </html>

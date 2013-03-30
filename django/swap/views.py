@@ -23,9 +23,9 @@ def swapRequest(request):
 		swap, swapCreated = SwapRequest.objects.get_or_create(user=user, have=haveSection, want=wantSection)
 		swap.save()
 		results = process(swap)
-		if not results:
-			return render_to_response("wait.html")
-	return render_to_response("results.html", {'results' : results})
+		if results:
+			return render_to_response("results.html", {'results' : results, })
+	return render_to_response("wait.html")
 
 def testEmail(request):
 	send_mail('test subject', 'test body', 'princetonsectionswap@gmail.com', ['ljmayer@princeton.edu'], fail_silently=False)

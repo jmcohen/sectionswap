@@ -21,7 +21,7 @@ def delete_all(input_req):
         if req.user == input_req.user:
             req.delete()
 
-def email(req, netids):
+def email(req, req_strs):
     email_body = """
     	<p>Hey, there!</p>
     	<p>We've identified a potential swap for <b>%s</b> from <b>%s</b> into <b>%s</b>.</p>
