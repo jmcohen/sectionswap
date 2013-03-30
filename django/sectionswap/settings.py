@@ -157,8 +157,8 @@ LOGGING = {
     }
 }
 
-EMAIL_HOST = 'smtp.webfaction.com'
-EMAIL_HOST_USER = 'username'
-EMAIL_HOST_PASSWORD = 'password'
-DEFAULT_FROM_EMAIL = 'valid_email_address'
-SERVER_EMAIL = 'valid_email_address'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sectionswap'
+EMAIL_HOST_PASSWORD = 'thuglyfe'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
