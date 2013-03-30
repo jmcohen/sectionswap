@@ -119,4 +119,6 @@ class SwapRequest(models.Model):
             if req == visited_list[0]:
                 return visited_list
 	    if req not in visited_set:
-                return req.find_cycle(visited_list[:], set(visited_set))
+                temp = req.find_cycle(visited_list[:], set(visited_set))
+		if temp != None:
+                    return temp
