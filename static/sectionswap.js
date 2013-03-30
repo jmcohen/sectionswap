@@ -37,6 +37,13 @@ function get_user_query() {
 	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+// Random background image selection
+bg = $('#randbg')
+bg.randomImage();
+bg.load(function() {
+    bg.fadeIn(1000);
+});
+
 // Executed on document load 
 $(document).ready(function(){
     
@@ -67,11 +74,4 @@ $(document).ready(function(){
     });
     
     $("#section-select").select2();
-});
-
-// Random background image selection
-bg = $('#randbg')
-bg.randomImage();
-bg.load(function() {
-    bg.fadeIn(1000);
 });
