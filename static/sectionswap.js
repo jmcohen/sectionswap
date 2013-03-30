@@ -1,4 +1,7 @@
 var setSectionOptions = function(sections){
+// 	var height = $("#container").height();
+// 	$("#container").height(height);
+
 	$("#submit").show();
 	$("#have-label").show();
 	$("#have-options").empty();
@@ -14,6 +17,10 @@ var setSectionOptions = function(sections){
 	$("body").attr("background", "-webkit-linear-gradient(#FFFFFF, #EEEEEE)");
 	var width = $("#want-options").width();
 	$("#options-div").width(40 + width * 2);
+	
+// 	$('#container').css('height', 'auto');
+// 	var autoHeight = $('#container').height();
+// 	$('#container').height(height).animate({height: autoHeight}, 300);
 }
 
 $(document).ready(function(){

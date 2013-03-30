@@ -3,13 +3,18 @@ from django.shortcuts import render_to_response
 from django.db.models import Q
 from swap.models import *
 from django.core.mail import send_mail
-# import casclient
+import casclient
 import traceback
 import json
 from process import process
 
 def index(request):
 	return render_to_response("index.html")
+	
+def login(request):
+	client = casclient.CASClient()
+	netid = client.Authenticate()
+	return HttpResponse(netid)
 
 def swapRequest(request):
 	netid = request.GET['user']

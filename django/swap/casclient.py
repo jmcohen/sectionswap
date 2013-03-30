@@ -11,7 +11,7 @@ class CASClient:
             return netid
       # No valid ticket; redirect the browser to the login page to get one
       login_url = self.cas_url + 'login' \
-         + '?service=' + urllib.quote(self.ServiceURL())
+         + '?service=http://localhost' #+ urllib.quote(self.ServiceURL())
       return login_url
       print 'Location: ' + login_url
       print 'Status-line: HTTP/1.1 307 Temporary Redirect'
