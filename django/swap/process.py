@@ -22,7 +22,14 @@ def delete_all(input_req):
             req.delete()
 
 def email(req, netids):
-    email_body = 'Users involved in swap:\n'
-    for netid in netids:
-        email_body += netid + '\n'
-    send_mail('Successful swap into' + unicode(req.want), email_body, 'from email', [req.user.netid + '@princeton.edu'], fail_silently=False)
+    email_body = """
+    	<p><b>Hey, there!</b></p>
+    	<p>We've identified a potential swap for %s from %s into %s.</p>
+    	<p>You'll swap with the following people:</p>
+    	<p>%s</p>
+    	<p>Cheers!</p>
+    	<p>The Section Swap Team</p>
+    	""" % (str(req.have.course), str(req.have.name), str(req.want.name), "</p><p>".join(netids))
+
+    send_mail('Successful swap into ' + str(req.want), email_body, 'Section Swap<princetonsectionswap@gmail.com>', [req.user.netid + '@princeton.edu'], fail_silently=False)
+    

@@ -23,7 +23,9 @@ def swapRequest(request):
 		wantSection = Section.objects.get(number=wantSectionNumber)
 		swap, swapCreated = SwapRequest.objects.get_or_create(user=user, have=haveSection, want=wantSection)
 		swap.save()
-		process(swap)
+		status = process(swap)
+		if not status:
+			break
 	return HttpResponse("All good!")
 
 def testEmail(request):
