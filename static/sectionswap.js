@@ -27,8 +27,8 @@ var setSectionOptions = function(sections){
 
 
 // Random background image
-var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
-$('body').css({'background-image': 'url(static/bg_orange/' + images[Math.floor(Math.random() * images.length)] + ')'});
+var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'];
+$('body').css({'background-image': 'url(static/bg/' + images[Math.floor(Math.random() * images.length)] + ')'});
 
 
 // Executed on document load 
