@@ -7,10 +7,16 @@ def process(input_req):
     input_req.save()
     cycle = input_req.find_cycle()
     if cycle != None:
+        netids = []
         for req in cycle:
-            email(req)
+            netids.append(req.user.netid)
+        for req in cycle:
+            email(req, netids)
             req.delete()
 
 
-def email(req):
-    send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+def email(req, netids):
+    email_body = 'Users involved in swap:\n'
+    for netid in netids:
+        email_body += netid + '\n'
+    send_mail('Successful swap ' + req.want.user.netid, email_body, 'from email', [req.user.netid + '@princeton.edu'], fail_silently=False)
