@@ -34,6 +34,8 @@ $('body').css({'background-image': 'url(static/bg_orange/' + images[Math.floor(M
 // Executed on document load 
 $(document).ready(function(){
 
+    $('#container').fadeIn();
+
 	$.getJSON("courses", function(courses){
 		_.each(courses, function(course){
 			var el = $('<option value="' + course['number'] + '"></option>').text(course['code']);
