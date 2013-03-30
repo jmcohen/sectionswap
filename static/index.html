@@ -1,8 +1,77 @@
-Hello, world!
-
-This is an edit!
-
-thuglyfe
-
-
-yolo
+<!DOCTYPE html>
+	<head>
+		<title>Section Swap</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1 style="text-align: center;">Section Swap</h1>
+			</div>
+			<form class="form">
+				<div class="row">
+					<div class="span2 offset5">
+						<select id="section-select" class="span2">
+							<option>COS 126</option>
+							<option>COS 226</option>
+							<option>COS 217</option>
+							<option>COS 126</option>
+							<option>COS 226</option>
+							<option>COS 217</option>
+							<option>COS 126</option>
+							<option>COS 226</option>
+							<option>COS 217</option>
+							<option>COS 126</option>
+							<option>COS 226</option>
+							<option>COS 217</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span3 offset3">
+						<label class="radio">
+							<input name="have" type="radio"> P01 (MWF 10:00 - 11:00)
+						</label>
+						<label class="radio">
+							<input name="have" type="radio"> P02 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="radio">
+							<input name="have" type="radio"> P03 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="radio">
+							<input name="have" type="radio"> P04 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="radio">
+							<input name="have" type="radio"> P05 (MWF 10:00 - 11:00)
+						</label>
+					</div>
+					<div class="span3">
+						<label class="checkbox">
+							<input type="checkbox"> P01 (MWF 10:00 - 11:00)
+						</label>
+						<label class="checkbox">
+							<input type="checkbox"> P02 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="checkbox">
+							<input type="checkbox"> P03 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="checkbox">
+							<input type="checkbox"> P04 (MWF 10:00 - 11:00)
+						</label>		
+						<label class="checkbox">
+							<input type="checkbox"> P05 (MWF 10:00 - 11:00)
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2 offset5">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+		<script src="sectionswap.js"></script>	
+	</body>
+</html>
