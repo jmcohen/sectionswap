@@ -1,23 +1,26 @@
 from django.db import models
 
 class Course(models.Model):
-    dept = models.CharField(max_length=3)
-    num  = models.CharField(max_length=4)
+    code = models.CharField(max_length=10)
     name = models.CharField(max_length=128)
     hits = models.IntegerField(default=0) # times requested; for diagnostics
     # section_set (ForeignKey)
 
     def __eq__(self, other):
-        return self.code == other.code
+    	if other:
+    		return self.code == other.code
+    	return None
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+	def __ne__(self, other):
+		if other:
+			return not self.__eq__(other)
+		return None
 
     def __unicode__(self):
         return self.short_name() + ' | ' + self.name
 
     def short_name(self):
-        return self.dept + ' ' + self.num
+        return self.code
 
 class Section(models.Model):
     course = models.ForeignKey(Course)
