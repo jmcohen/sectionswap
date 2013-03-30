@@ -38,7 +38,7 @@ def courses(request):
 # 	courseDicts = []
 # 	for course in Course.objects.all().order_by('code'):
 # 		sectionDicts = []
-# 		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="C")).order_by('name')
+# 		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="C")).filter(isClosed=True).order_by('name')
 # 		
 # 		if len(sections) < 2:
 # 			continue
@@ -47,14 +47,14 @@ def courses(request):
 # 		
 # 		for section in sections:
 # 			name = section.name + " (" + section.days + " " + section.time + ")"
-# 			sectionDict = {'number' : section.number, 'name' : name, 'isClosed' : section.isClosed}
+# 			sectionDict = {'number' : section.number, 'name' : name}
 # 			sectionDicts.append(sectionDict)
 # 		code = course.code.split('/')[0].strip() # for demo purposes, keep only the first code synonym
 # 		courseDict = {'code' : code, 'number' : course.number, 'sections' : sectionDicts}
 # 		courseDicts.append(courseDict)
 # 	coursesJson = json.dumps(courseDicts)
 # 	return HttpResponse(coursesJson)
-	return render_to_response("courses.json")
+ 	return render_to_response("courses.json")
 
 # def index(request):
 # 	C = casclient.CASClient()

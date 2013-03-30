@@ -1,17 +1,19 @@
 var setSectionOptions = function(sections){
 // 	var height = $("#container").height();
 // 	$("#container").height(height);
-
 	$("#submit").show();
 	$("#have-label").show();
 	$("#have-options").empty();
 	_.each(sections, function(section){
-		$("#have-options").append('<label class="radio"><input name="have" class="have-option" value="' + section.number + '" type="radio">' + section.name + '</label>');
+		var el = $('<label class="radio"><input name="have" class="have-option" value="' + section.number + '" type="radio">' + section.name + '</label>');
+		$("#have-options").append(el);
 	});
 	$("#want-label").show();
 	$("#want-options").empty();
 	_.each(sections, function(section){
-		$("#want-options").append('<label class="checkbox"><input name="want" class="want-option" value="' + section.number + '" type="checkbox">' + section.name + '</label>');
+		var el = $('<label class="checkbox"><input name="want" class="want-option" ' + ' value="' + section.number + '" type="checkbox">' + section.name + '</label>');
+		$("#want-options").append(el);
+		el.attr('disabled', 'true');
 	});
 	
 	$("body").attr("background", "-webkit-linear-gradient(#FFFFFF, #EEEEEE)");
@@ -54,4 +56,6 @@ $(document).ready(function(){
 		var url = "swaprequest?course=" + courseNumber + "&have=" + haveNumber + "&want=" + wantNumber + "&user=" + user;
 		window.location.href = url;
 	});
+	
+	$("#section-select").select2();
 });
