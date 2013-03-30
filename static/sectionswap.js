@@ -25,13 +25,6 @@ var setSectionOptions = function(sections){
 // 	$('#container').height(height).animate({height: autoHeight}, 300);
 }
 
-// Random background image selection
-$('#randbg').randomImage();
-bg = $('#randbg')
-bg.load(function() {
-    bg.fadeIn(1000);
-});
-
 function get_user_query() {
     name = 'netid';
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -74,4 +67,11 @@ $(document).ready(function(){
     });
     
     $("#section-select").select2();
+});
+
+// Random background image selection
+bg = $('#randbg')
+bg.randomImage();
+bg.load(function() {
+    bg.fadeIn(1000);
 });
