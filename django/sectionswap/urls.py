@@ -6,8 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^', 'swap.views.index'),
-	url(r'swaprequest^', 'swap.views.swapRequest'),
+	url(r'^$', 'swap.views.index'),
+	url(r'^swaprequest$', 'swap.views.swapRequest'),
 
     # Examples:
     # url(r'^$', 'sectionswap.views.home', name='home'),

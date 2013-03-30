@@ -7,7 +7,9 @@ def index(request):
 	return render_to_response("index.html")
 
 def swapRequest(request):
-	return HttpResponse("It works!!!")
+	have = request.GET['have']
+	want = request.GET['want']
+	return HttpResponse(want)
 
 # def index(request):
 # 	C = casclient.CASClient()
