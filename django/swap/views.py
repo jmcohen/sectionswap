@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.db.models import Q
 from swap.models import *
+from django.core.mail import send_mail
 # import casclient
 import traceback
 import json
@@ -13,7 +14,11 @@ def swapRequest(request):
 	have = request.GET['have']
 	want = request.GET['want']
 	return HttpResponse(want)
-	
+
+def testEmail(request):
+	send_mail('test subject', 'test body', 'princetonsectionswap@gmail.com', ['ljmayer@princeton.edu'], fail_silently=False)
+	return HttpResponse()
+
 def courses(request):
 	courseDicts = []
 	for course in Course.objects.all():

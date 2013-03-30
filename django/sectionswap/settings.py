@@ -157,8 +157,8 @@ LOGGING = {
     }
 }
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'sectionswap'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'princetonsectionswap@gmail.com'
 EMAIL_HOST_PASSWORD = 'thuglyfe'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
