@@ -1,7 +1,7 @@
 from django.contrib import admin
 from swap.models import *
 
-class CourseAdmin(admin.ModelAdmin):
-    pass
-    
-admin.site.register(Course, CourseAdmin)
+admin.site.register(Course)
+admin.site.register(SwapRequest)
+admin.site.register(User)
+admin.site.register(Section)
