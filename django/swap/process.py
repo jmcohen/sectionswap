@@ -23,13 +23,13 @@ def delete_all(input_req):
 
 def email(req, req_strs):
     email_body = """
-    	<p>Hey, there!</p>
+    	<p>Hey there, %s!</p>
     	<p>We've identified a potential swap for <b>%s</b> from <b>%s</b> into <b>%s</b>.</p>
     	<p>You'll swap with the following people:</p>
     	<p>%s</p>
     	<p>Cheers!</p>
     	<p>The Section Swap Team</p>
-    	""" % (str(req.have.course), str(req.have.name), str(req.want.name), "</p><p>".join(req_strs))
+    	""" % (str(req.user), str(req.have.course), str(req.have.name), str(req.want.name), "</p><p>".join(req_strs))
 
     msg = EmailMessage('Successful swap into ' + str(req.want), email_body, 'Section Swap<princetonsectionswap@gmail.com>', [req.user.netid + '@princeton.edu'])
     msg.content_subtype = "html"
