@@ -6,15 +6,18 @@ class Course(models.Model):
     name = models.CharField(max_length=128)
     hits = models.IntegerField(default=0) # times requested; for diagnostics
     # section_set (ForeignKey)
-    
-    def __str__(self):
-        return self.short_name() + ' | ' + self.name
 
     def __eq__(self, other):
         return self.code == other.code
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __unicode__(self):
+        return self.short_name() + ' | ' + self.name
+
+    def short_name(self):
+        return self.dept + ' ' + self.num
 
 class Section(models.Model):
     course = models.ForeignKey(Course)
@@ -24,16 +27,17 @@ class Section(models.Model):
     # TODO: room? teacher?
     students = models.IntegerField(default=0)
     seats    = models.IntegerField(default=0)
-    
-    def __str__(self):
-        return self.course.short_name() + ' ' + self.name
-    
+     
     # TODO: use something less expensive than str compare
     def __eq__(self, other):
-        return type(self) == type(other) and str(self) == str(other)
+        return type(self) == type(other) \
+            and unicode(self) == unicode(other)
     
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __unicode__(self):
+        return self.course.short_name() + ' ' + self.name
 
     def sorted_had_by_set(self):
         return sorted(self.had_by_set.all())
@@ -42,9 +46,6 @@ class User(models.Model):
     netid = models.CharField(max_length=8)
     pwd   = models.CharField(max_length=32)
     # swaprequest_set (ForeignKey)
-    
-    def __str__(self):
-        return self.netid
 
     def __eq__(self, other):
         return self.netid == other.netid
@@ -52,15 +53,14 @@ class User(models.Model):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __unicode__(self):
+        return self.netid
+
 class SwapRequest(models.Model):
     user = models.ForeignKey(User)
     have = models.ForeignKey(Section, related_name='had_by')
     want = models.ForeignKey(Section, related_name='wanted_by')
     date = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return str(self.user) \
-               + (' (%s)' % self.date.strftime('%m/%d/%y %H:%M:%S'))
 
     def __gt__(self, other):
         return self.date > other.date
@@ -89,6 +89,10 @@ class SwapRequest(models.Model):
         result = 31 * result + hash(self.have.name)
         result = 31 * result + hash(self.want.name)
         return result
+
+    def __unicode__(self):
+        return unicode(self.user) \
+               + (' (%s)' % self.date.strftime('%m/%d/%y %H:%M:%S'))
     
     def find_cycle(self, visited_list=None, visited_set=None):
         if visited_list == None:
