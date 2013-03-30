@@ -18,7 +18,7 @@ var setSectionOptions = function(sections){
 	
 	$("body").attr("background", "-webkit-linear-gradient(#FFFFFF, #EEEEEE)");
 	var width = $("#want-options").width();
-	$("#options-div").width(40 + width * 2);
+	$("#options-div").width(60 + width * 2);
 	
 // 	$('#container').css('height', 'auto');
 // 	var autoHeight = $('#container').height();

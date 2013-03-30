@@ -7,9 +7,6 @@ import urllib2
 import json
 from process import process
 
-CAS_URL = "https://fed.princeton.edu/cas/"
-SERVICE = "http://localhost"
-
 def index(request):
 	return render_to_response("index.html")
 
@@ -25,10 +22,10 @@ def swapRequest(request):
 		wantSection = Section.objects.get(number=wantSectionNumber)
 		swap, swapCreated = SwapRequest.objects.get_or_create(user=user, have=haveSection, want=wantSection)
 		swap.save()
-		status = process(swap)
-		if not status:
-			break
-	return HttpResponse("All good!")
+		results = process(swap)
+		if not results:
+			return render_to_response("wait.html")
+	return render_to_response("results.html", {'results' : results})
 
 def testEmail(request):
 	send_mail('test subject', 'test body', 'princetonsectionswap@gmail.com', ['ljmayer@princeton.edu'], fail_silently=False)
@@ -38,11 +35,11 @@ def courses(request):
 # 	courseDicts = []
 # 	for course in Course.objects.all().order_by('code'):
 # 		sectionDicts = []
-# 		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="C")).filter(isClosed=True).order_by('name')
+# 		sections = Section.objects.filter(course=course).filter(Q(name__startswith="P") | Q(name__startswith="B") | Q(name__startswith="C")).filter(isClosed=True).order_by('name')
 # 		
 # 		if len(sections) < 2:
 # 			continue
-# 		if len(sections.filter(name__startswith='C')) < 2 and len(sections.filter(name__startswith='P')) < 2:
+# 		if len(sections.filter(name__startswith='C')) < 2 and len(sections.filter(name__startswith='P')) < 2 and len(sections.filter(name__startswith='B')) < 2:
 # 			continue
 # 		
 # 		for section in sections:
@@ -55,12 +52,3 @@ def courses(request):
 # 	coursesJson = json.dumps(courseDicts)
 # 	return HttpResponse(coursesJson)
  	return render_to_response("courses.json")
-
-# def index(request):
-# 	C = casclient.CASClient()
-# 	try:
-#  		netid = C.Authenticate()
-# 	except:
-# 		tb = traceback.format_exc()
-# 		return HttpResponse(tb)
-# 	return HttpResponse(netid)
