@@ -1,37 +1,33 @@
-var courses = {
-	"COS 126": ["P01 (MWF 10:00 - 11:00)", "P02 (MWF 10:00 - 11:00)", "P03 (MWF 10:00 - 11:00)","P04 (MWF 10:00 - 11:00)"],
-	"COS 226": ["L01 (MWF 10:00 - 11:00)", "L02 (MWF 10:00 - 11:00)", "L03 (MWF 10:00 - 11:00)","L04 (MWF 10:00 - 11:00)"]
-};
-
-var setSelectedCourse = function(course){
-	var sections = courses[course];
+var setSectionOptions = function(sections){
 	$("#have-options").empty();
-	_.each(sections, function(section, index){
-		$("#have-options").append('<label class="radio"><input name="have" class="have-option" value="' + index + '" type="radio">' + section + '</label>');
+	_.each(sections, function(section){
+		$("#have-options").append('<label class="radio"><input name="have" class="have-option" value="' + section.number + '" type="radio">' + section.name + '</label>');
 	});
 	$("#want-options").empty();
-	_.each(sections, function(section, index){
-		$("#want-options").append('<label class="checkbox"><input name="want" class="want-option" value="' + index + '" type="checkbox">' + section + '</label>');
+	_.each(sections, function(section){
+		$("#want-options").append('<label class="checkbox"><input name="want" class="want-option" value="' + section.number + '" type="checkbox">' + section.name + '</label>');
 	});
 }
 
 $(document).ready(function(){
-	_.each(_.keys(courses), function(key){
-		$("#section-select").append('<option>' + key + '</option>');
-	});
-
+	$.getJSON("courses", function(courses){
+		_.each(courses, function(course){
+			$("#section-select").append('<option value="' + course['number'] + '">' + course['code'] + '</option>');
+		});
+		
 	$("#section-select").change(function(){
-		var selected = $("#section-select").val();
-		setSelectedCourse(selected);
+		var selectedNumber = $("#section-select").val();
+		var selectedCourse = _.find(courses, function(course){return selectedNumber == course.number;});
+		setSectionOptions(selectedCourse.sections);
 	});
-	
+});
+
+
 	$("#submit").click(function(){
-		var course = $("#section-select").val();	
-		var have = $(".have-option:checked").val();
-		var want = _.map($(".want-option:checked"), function(w){return $(w).val()});
-		var url = "swaprequest?course=" + course + "&have=" + have + "&want=" + want;
+		var courseNumber = $("#section-select").val();	
+		var haveNumber = $(".have-option:checked").val();
+		var wantNumber = _.map($(".want-option:checked"), function(w){return $(w).val()});
+		var url = "swaprequest?course=" + courseNumber + "&have=" + haveNumber + "&want=" + wantNumber;
 		window.location.href = url;
 	});
-	
-	setSelectedCourse("COS 126");
 });

@@ -78,6 +78,8 @@ def scrape():
 				course.save()
  				updateCourse(course)
  	
+# TODO: CACHING
+
 #  	list = CoursesList.objects.all()[0]
 #  	list.cache()
  	

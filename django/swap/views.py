@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from swap.models import *
 # import casclient
 import traceback
+import json
 
 def index(request):
 	return render_to_response("index.html")
@@ -10,6 +12,19 @@ def swapRequest(request):
 	have = request.GET['have']
 	want = request.GET['want']
 	return HttpResponse(want)
+	
+def courses(request):
+	courses = []
+	for course in Course.objects.all():
+		sections = []
+		for section in Section.objects.filter(course=course).order_by('name'):
+			name = section.name + " (" + section.days + " " + section.time + ")"
+			sectionDict = {'number' : section.number, 'name' : name}
+			sections.append(sectionDict)
+		courseDict = {'code' : course.code, 'number' : course.number, 'sections' : sections}
+		courses.append(courseDict)
+	coursesJson = json.dumps(courses)
+	return HttpResponse(coursesJson)
 
 # def index(request):
 # 	C = casclient.CASClient()

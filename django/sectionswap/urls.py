@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'swap.views.index'),
+	url(r'^courses$', 'swap.views.courses'),
 	url(r'^swaprequest$', 'swap.views.swapRequest'),
 
     # Examples:
