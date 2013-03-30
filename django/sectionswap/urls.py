@@ -9,7 +9,6 @@ urlpatterns = patterns('',
 	url(r'^$', 'swap.views.index'),
 	url(r'^courses$', 'swap.views.courses'),
 	url(r'^swaprequest$', 'swap.views.swapRequest'),
-	url(r'^login$', 'swap.views.login'),
 
     # Examples:
     # url(r'^$', 'sectionswap.views.home', name='home'),

@@ -1,20 +1,17 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.db.models import Q
 from swap.models import *
 from django.core.mail import send_mail
-import casclient
-import traceback
+import urllib2
 import json
 from process import process
 
+CAS_URL = "https://fed.princeton.edu/cas/"
+SERVICE = "http://localhost"
+
 def index(request):
 	return render_to_response("index.html")
-	
-def login(request):
-	client = casclient.CASClient()
-	netid = client.Authenticate()
-	return HttpResponse(netid)
 
 def swapRequest(request):
 	netid = request.GET['user']
